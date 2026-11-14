@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://lago-caisse.fr/sitemap.xml
