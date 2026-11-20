@@ -137,6 +137,8 @@
   }
   ['s1', 'ms', 'ch', 'ch'].forEach(add);
   render();
+  /* pastille « touchez un article » : disparaît dès la première interaction */
+  root.addEventListener('click', function () { var w = root.closest('.tw'); if (w) w.classList.add('used'); }, { once: true });
   /* ?metier=karting (liens des pages métiers) : ouvre la caisse sur cette activité */
   var want = (location.search.match(/[?&]metier=([a-z-]+)/) || [])[1], pre = null;
   if (want) chips.forEach(function (c) { if (c.dataset.slugs.split(',').indexOf(want) > -1) pre = c.dataset.act; });
