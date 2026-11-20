@@ -4,7 +4,7 @@
   if (!root) return;
   var T = {};
   try { T = JSON.parse(root.getAttribute('data-i18n') || '{}'); } catch (e) {}
-  var lines = [], disc = false, auto = true, timers = [], no = 1042, busy = false;
+  var act = 'tramp', lines = [], disc = false, auto = true, timers = [], no = 1042, busy = false;
   var list = root.querySelector('.pl'), totalEl = root.querySelector('.pt-total'), pay = root.querySelector('.pay'), ov = root.querySelector('.ppay'), dbtn = root.querySelector('.pdisc');
   var money = function (c) { var v = (c / 100).toFixed(2); return T.loc === 'en' ? '€' + v : v.replace('.', ',') + ' €'; };
   var esc = function (s) { return String(s).replace(/[&<>"]/g, function (c) { return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); };
@@ -48,8 +48,18 @@
     root.querySelectorAll('.ct').forEach(function (b) { var on = b.dataset.cat === cat; b.classList.toggle('on', on); b.setAttribute('aria-selected', on ? 'true' : 'false'); });
     root.querySelectorAll('.pg').forEach(function (g) { g.hidden = g.dataset.cat !== cat; });
   }
+  var chips = document.querySelectorAll('.acsel .ac');
+  function firstCat(a) { var c = document.querySelector('.acsel .ac[data-act="' + a + '"]'); return c ? c.dataset.first : 'tramp-park'; }
+  function setAct(a, seed) {
+    act = a;
+    chips.forEach(function (c) { var on = c.dataset.act === a; c.classList.toggle('on', on); c.setAttribute('aria-pressed', on ? 'true' : 'false'); });
+    root.querySelectorAll('.pcat').forEach(function (g) { g.hidden = g.dataset.act !== a; });
+    lines = []; disc = false; closeOv(); tab(firstCat(a));
+    if (seed) { var f = root.querySelector('.pg[data-act="' + a + '"] .pt'); if (f) { lines.push({ k: f.dataset.k, n: f.dataset.n, p: +f.dataset.p, q: 1 }); } }
+    render();
+  }
   function closeOv() { ov.hidden = true; ov.innerHTML = ''; busy = false; root.classList.remove('paying'); }
-  function reset() { lines = []; disc = false; closeOv(); tab('park'); render(); }
+  function reset() { lines = []; disc = false; closeOv(); tab(firstCat(act)); render(); }
   /* paiement */
   var pm = 'card', given = 0;
   function options(total) {
@@ -98,6 +108,11 @@
     else if (t.classList.contains('pv')) done();
     else if (t.classList.contains('pnew')) reset();
   });
+  var sel = document.querySelector('.acsel');
+  if (sel) sel.addEventListener('click', function (e) {
+    var c = e.target.closest('.ac'); if (!c || !e.isTrusted) return;
+    stop(); setAct(c.dataset.act, true);
+  });
   function stop() { auto = false; timers.forEach(clearTimeout); timers = []; }
   function later(f, ms) { timers.push(setTimeout(f, ms)); }
   /* lecture automatique, interrompue au premier geste */
@@ -111,7 +126,7 @@
       go(function () { add('ch'); }, 700);
       go(function () { add('ch'); }, 1000);
     } else t = 1800;
-    go(function () { tab('bar'); }, 900);
+    go(function () { tab('tramp-bar'); }, 900);
     go(function () { add('cf'); }, 1000);
     go(function () { disc = true; render(); }, 1100);
     go(function () { openPay(); }, 1300);
@@ -122,6 +137,10 @@
   }
   ['s1', 'ms', 'ch', 'ch'].forEach(add);
   render();
+  /* ?metier=karting (liens des pages métiers) : ouvre la caisse sur cette activité */
+  var want = (location.search.match(/[?&]metier=([a-z-]+)/) || [])[1], pre = null;
+  if (want) chips.forEach(function (c) { if (c.dataset.slugs.split(',').indexOf(want) > -1) pre = c.dataset.act; });
+  if (pre && pre !== 'tramp') { auto = false; setAct(pre, true); }
   if (!window.matchMedia || !matchMedia('(prefers-reduced-motion: reduce)').matches) {
     if ('IntersectionObserver' in window) {
       var io = new IntersectionObserver(function (en) { if (en[0].isIntersecting) { io.disconnect(); play(true); } }, { threshold: .4 });
