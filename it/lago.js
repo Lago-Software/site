@@ -31,3 +31,24 @@ document.addEventListener('submit', function (e) {
   location.href = 'mailto:' + LAGO_CONTACT_EMAIL + '?subject=' + encodeURIComponent('Richiesta di demo Lago') + '&body=' + encodeURIComponent(body);
   say('Il tuo programma di posta si apre con la richiesta già compilata: non resta che inviarla.', true);
 });
+
+/* accueil : accès rapide à la caisse de démonstration */
+(function () {
+  var t = document.getElementById('caisse-demo'), q = document.getElementById('qa');
+  if (!t) return;
+  var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest && e.target.closest('a[data-try]');
+    if (!a) return;
+    e.preventDefault();
+    t.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: window.innerWidth < 761 ? 'start' : 'center' });
+    t.classList.remove('pulse'); void t.offsetWidth; t.classList.add('pulse');
+    setTimeout(function () { t.classList.remove('pulse'); }, 1300);
+  });
+  if (!q || !('IntersectionObserver' in window)) return;
+  new IntersectionObserver(function (en) {
+    var r = en[0], gone = !r.isIntersecting && r.boundingClientRect.bottom < 0;
+    q.classList.toggle('on', gone); document.body.classList.toggle('qa-on', gone);
+    q.setAttribute('aria-hidden', gone ? 'false' : 'true'); q.tabIndex = gone ? 0 : -1;
+  }, { threshold: 0 }).observe(t);
+})();
