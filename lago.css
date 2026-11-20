@@ -571,3 +571,12 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
 @media (max-width:760px){.hero{padding-top:112px}}
 .foot .lg-langs{color:#C4D3E6!important;border-top-color:rgba(255,255,255,.18)!important}
 .foot .lg-langs a,.foot .lg-langs strong{color:#fff!important}
+
+/* illustration : au comptoir */
+.photo{margin:0}
+.photo img{width:100%;height:auto;border-radius:28px;box-shadow:0 40px 80px -40px rgba(10,31,77,.45)}
+.photo figcaption{margin-top:12px;font-size:13.5px;color:var(--muted);display:flex;gap:8px;align-items:flex-start}
+.photo figcaption:before{content:"";flex:none;width:8px;height:8px;margin-top:6px;border-radius:50%;background:var(--orange)}
+.counter{display:grid;grid-template-columns:1.25fr 1fr;gap:clamp(28px,5vw,64px);align-items:center}
+.counter p.lead{margin-top:16px}
+@media (max-width:900px){.counter{grid-template-columns:1fr}}
