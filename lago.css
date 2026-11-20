@@ -639,3 +639,18 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
  .pos .gl svg{height:2em}
  .pos .tix{font-size:1em}
 }
+
+/* ----- menu déroulant : plus facile à atteindre ----- */
+.dd>button{padding:11px 14px}
+.dd>button svg{transform:rotate(90deg);transition:transform .2s}
+.dd:hover>button svg,.dd:focus-within>button svg{transform:rotate(-90deg)}
+.dd>button{position:relative}
+.dd-menu,.dd-menu.cols{display:block;visibility:hidden;opacity:0;transform:translateY(-6px);pointer-events:none;transition:opacity .16s ease,transform .16s ease,visibility 0s linear .35s;padding:10px}
+.dd-menu.cols{display:grid;grid-template-columns:1fr 1fr;gap:0 8px;min-width:560px}
+.dd:hover .dd-menu,.dd:focus-within .dd-menu,.dd:hover .dd-menu.cols,.dd:focus-within .dd-menu.cols{visibility:visible;opacity:1;transform:none;pointer-events:auto;transition:opacity .16s ease,transform .16s ease,visibility 0s}
+/* zone de survol continue entre le bouton et le menu, et tolérance sur les côtés */
+.dd-menu:before{content:"";position:absolute;left:-24px;right:-24px;top:-24px;height:24px}
+.dd-menu a{padding:12px 14px}
+.dd-menu b{margin:10px 14px 4px}
+.dd-menu .all{padding:14px;font-weight:700}
+@media (max-width:1100px){.dd-menu.cols{min-width:480px}}
