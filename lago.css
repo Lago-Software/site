@@ -843,3 +843,27 @@ html:not(:lang(fr)) .hero-home h1{font-size:clamp(34px,3.9vw,56px);line-height:1
 .pgrid:not(.pg3) .bt.pn .th img{position:absolute;left:-26.5%;top:-24px;width:134%;height:auto;max-width:none;object-fit:initial;border-radius:0}
 .pgrid:not(.pg3) .bt.pn .th::after{content:"";position:absolute;inset:auto 0 0 0;height:34px;background:linear-gradient(180deg,rgba(255,255,255,0),rgba(255,255,255,.9));pointer-events:none}
 @media (max-width:640px){.pgrid:not(.pg3) .bt.pn{padding:18px;grid-template-rows:auto auto auto}.pgrid:not(.pg3) .bt.pn h3{font-size:19px;margin:12px 0 6px}.pgrid:not(.pg3) .bt.pn p:not(.pq){margin:0}}
+/* v4 : offres plus désirables */
+.plans2{gap:18px;align-items:stretch}
+.plans2 .plan{padding:30px 28px;gap:10px;position:relative}
+.plans2 .pic{width:48px;height:48px;border-radius:14px;display:grid;place-items:center;margin-bottom:4px}
+.plans2 .pic.b{background:#E6F4FD;color:#206EA8}.plans2 .pic.o{background:#FFEBDD;color:#B84A00}
+.plans2 .ptag{font-size:16px;line-height:1.4;margin:0;color:var(--navy);font-weight:600}
+.plans2 .pwho{display:inline-block;align-self:flex-start;font-size:12.5px;font-weight:700;color:#206EA8;background:#EAF4FC;border-radius:999px;padding:4px 11px;margin:2px 0 6px}
+.plans2 .plan.hl .pwho{background:rgba(255,255,255,.55);color:var(--navy)}
+.plans2 .price{margin-top:4px}
+.plans2 .per{margin:2px 0 0;font-size:14px;font-weight:700;color:#B84A00}
+.plans2 .yr{margin:0 0 6px;font-size:14px;color:var(--ink2)}
+.plans2 .yr b{color:var(--navy)}
+.plans2 ul{gap:11px;margin:10px 0 18px;padding-top:16px;border-top:1px solid var(--line);font-size:15px;line-height:1.45}
+.plans2 li b{color:var(--navy)}
+.plans2 .plan.hl{box-shadow:0 40px 70px -30px rgba(49,172,240,.85);transform:translateY(-6px)}
+.plans2 .plan.hl ul{border-top-color:rgba(10,31,77,.18)}
+.plans2 .plan.hl .pic{background:rgba(255,255,255,.7)}
+.plans2 .plan .btn{margin-top:auto;justify-content:center}
+.plans2 .badge{position:absolute;top:-13px;left:28px}
+.repl{text-align:center;margin:26px auto 0;max-width:760px;font-size:17px;color:var(--navy)}
+@media (max-width:900px){.plans2 .plan.hl{transform:none}}
+.plans2 li>span{display:block}
+.plans2 .plan.hl li svg{stroke:#0A1F4D}
+.repl{max-width:900px;text-wrap:balance}
