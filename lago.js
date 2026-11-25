@@ -28,7 +28,7 @@ document.addEventListener('submit', function (e) {
   if (!LAGO_CONTACT_EMAIL) { say('Les demandes en ligne ouvrent très prochainement. Merci de votre intérêt !'); return; }
   var body = 'Nom : ' + g('nom') + '\nÉtablissement : ' + (g('etablissement') || '-') + '\nE-mail : ' + g('email') +
     '\nTéléphone : ' + (g('telephone') || '-') + '\nActivité : ' + g('activite') + '\n\n' + g('message');
-  location.href = 'mailto:' + LAGO_CONTACT_EMAIL + '?subject=' + encodeURIComponent('Demande de démo Lago') + '&body=' + encodeURIComponent(body);
+  location.href = 'mailto:' + LAGO_CONTACT_EMAIL + '?subject=' + encodeURIComponent(f.dataset.subject||'Demande de démo Lago') + '&body=' + encodeURIComponent(body);
   say('Votre messagerie s’ouvre avec la demande pré-remplie : il ne reste qu’à l’envoyer.', true);
 });
 
