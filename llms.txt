@@ -1,0 +1,30 @@
+# Lago
+
+> Lago est un logiciel français de caisse, de réservation en ligne, de planning clients, de planning d'équipe et de contrôles de sécurité pour les lieux de loisirs (trampoline park, laser game, escape game, bowling, karting, accrobranche, salle d'escalade, parc indoor) et les commerces de proximité (coiffeur, institut de beauté, restaurant, boutique). Prix publics : 29 € HT par mois (Essentiel : planning, équipe, contrôles) et 59 € HT par mois (Complet : caisse comprise), par établissement, sans engagement, premier mois offert. La caisse fournit l'attestation individuelle de l'éditeur (Lago n'est pas certifié NF525). Éditeur : Hugo Lehéricé, entrepreneur individuel. Contact : lago.software.contact@gmail.com
+
+## Produit
+- [Accueil](https://lago-caisse.fr/): présentation et caisse de démonstration
+- [Tarifs](https://lago-caisse.fr/tarifs.html): offres Essentiel, Complet et multi-sites
+- [Caisse](https://lago-caisse.fr/fonctionnalites/caisse.html)
+- [Planning et réservation](https://lago-caisse.fr/fonctionnalites/planning-reservation.html)
+- [Équipe](https://lago-caisse.fr/fonctionnalites/equipe.html)
+- [Contrôles et conformité](https://lago-caisse.fr/fonctionnalites/controles-conformite.html)
+- [Remises CSE](https://lago-caisse.fr/fonctionnalites/cse.html)
+- [Écran TV client](https://lago-caisse.fr/fonctionnalites/ecran-tv.html)
+- [Tous les métiers](https://lago-caisse.fr/metiers/)
+
+## Guides (sources citées)
+- [Logiciel de caisse : ce que dit la loi en 2026](https://lago-caisse.fr/guides/logiciel-de-caisse-loi-2026.html)
+- [NF525 ou attestation de l'éditeur](https://lago-caisse.fr/guides/nf525-ou-attestation-editeur.html)
+- [Prix d'un logiciel de caisse en 2026](https://lago-caisse.fr/guides/prix-logiciel-de-caisse.html)
+- [Comment choisir un logiciel de caisse](https://lago-caisse.fr/guides/comment-choisir-logiciel-de-caisse.html)
+- [Contrôle de sécurité quotidien d'un parc de loisirs](https://lago-caisse.fr/guides/controle-securite-quotidien.html)
+- [Décharge de responsabilité dans un parc de loisirs](https://lago-caisse.fr/guides/decharge-de-responsabilite-loisirs.html)
+- [Ouvrir un trampoline park](https://lago-caisse.fr/guides/ouvrir-un-trampoline-park.html)
+
+## Ressources gratuites
+- [Modèles PDF gratuits pour parcs de loisirs](https://lago-caisse.fr/modeles-gratuits/)
+- [Comparatifs : Qweekle, PlayPro, ROLLER](https://lago-caisse.fr/comparatifs/)
+
+## Langues
+Le site existe en français, anglais (/en/), espagnol (/es/), allemand (/de/) et italien (/it/).
