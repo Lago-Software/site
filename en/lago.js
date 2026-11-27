@@ -48,7 +48,13 @@ document.addEventListener('submit', function (e) {
     var body = 'Nom : ' + g('nom') + '\nE-mail : ' + g('email') + '\nActivité : ' + g('tpl');
     location.href = 'mailto:' + LAGO_CONTACT_EMAIL + '?subject=' + encodeURIComponent(f.dataset.subject) + '&body=' + encodeURIComponent(body);
   };
-  if (!LAGO_CLOUD) { say(f.dataset.fallback + '…', true); mail(); return; }
+  if (!LAGO_CLOUD) {
+    /* serveur d'inscription pas encore branché : on ouvre directement Lago (gratuit, installable en un clic) */
+    var L = { fr: 'Ouverture de Lago…', en: 'Opening Lago…', es: 'Abriendo Lago…', de: 'Lago wird geöffnet …', it: 'Apertura di Lago…' }[(document.documentElement.lang || 'fr').slice(0, 2)] || 'Opening Lago…';
+    say(L, true);
+    location.href = 'https://lago-software.github.io/?installer=1';
+    return;
+  }
   var t0 = btn.textContent; btn.disabled = true; btn.textContent = f.dataset.busy; say('');
   fetch(LAGO_CLOUD.replace(/\/+$/, '') + '/v1/signup', { method: 'POST', headers: { 'content-type': 'application/json' },
     body: JSON.stringify({ name: g('nom'), tpl: g('tpl'), email: g('email'), hp: g('hp'), ts: Date.now() }) })
