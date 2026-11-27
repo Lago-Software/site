@@ -1,6 +1,6 @@
 // Adresse qui reçoit les demandes de démo : la renseigner ici active le formulaire.
 // Adresse du serveur d'inscription Lago (cloud/LISEZMOI.md) : vide = la page Télécharger ouvre directement Lago.
-var LAGO_CLOUD = '';
+var LAGO_CLOUD = 'https://lago-cloud.leherice-h.workers.dev';
 var LAGO_CONTACT_EMAIL = 'lago.software.contact@gmail.com';
 document.addEventListener('click', function (e) {
   var a = e.target.closest && e.target.closest('a.zoom');

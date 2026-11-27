@@ -1,5 +1,5 @@
 // Adresse du serveur d'inscription Lago (cloud/LISEZMOI.md)
-var LAGO_CLOUD = '';
+var LAGO_CLOUD = 'https://lago-cloud.leherice-h.workers.dev';
 // Adresse qui reçoit les demandes de démo : la renseigner ici active le formulaire.
 var LAGO_CONTACT_EMAIL = 'lago.software.contact@gmail.com';
 document.addEventListener('click', function (e) {
