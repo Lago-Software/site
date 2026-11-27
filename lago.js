@@ -1,4 +1,6 @@
 // Adresse qui reçoit les demandes de démo : la renseigner ici active le formulaire.
+// Adresse du serveur d'inscription Lago (cloud/LISEZMOI.md) : vide = la page Télécharger envoie une demande par e-mail.
+var LAGO_CLOUD = '';
 var LAGO_CONTACT_EMAIL = 'lago.software.contact@gmail.com';
 document.addEventListener('click', function (e) {
   var a = e.target.closest && e.target.closest('a.zoom');
@@ -30,6 +32,46 @@ document.addEventListener('submit', function (e) {
     '\nTéléphone : ' + (g('telephone') || '-') + '\nActivité : ' + g('activite') + '\n\n' + g('message');
   location.href = 'mailto:' + LAGO_CONTACT_EMAIL + '?subject=' + encodeURIComponent(f.dataset.subject||'Demande de démo Lago') + '&body=' + encodeURIComponent(body);
   say('Votre messagerie s’ouvre avec la demande pré-remplie : il ne reste qu’à l’envoyer.', true);
+});
+
+/* page Télécharger : création immédiate d'un espace Lago prêt à l'emploi */
+document.addEventListener('submit', function (e) {
+  var f = e.target;
+  if (!f.matches || !f.matches('form[data-signup]')) return;
+  e.preventDefault();
+  var g = function (n) { var el = f.elements[n]; return el ? String(el.value || '').trim() : ''; };
+  var out = f.querySelector('.msg'), btn = f.querySelector('button[type=submit]');
+  var say = function (t, ok) { out.textContent = t; out.style.color = ok ? '#166534' : '#9A3412'; };
+  if (!g('nom') || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(g('email'))) { say(f.dataset.err); return; }
+  var mail = function () {
+    if (!LAGO_CONTACT_EMAIL) return;
+    var body = 'Nom : ' + g('nom') + '\nE-mail : ' + g('email') + '\nActivité : ' + g('tpl');
+    location.href = 'mailto:' + LAGO_CONTACT_EMAIL + '?subject=' + encodeURIComponent(f.dataset.subject) + '&body=' + encodeURIComponent(body);
+  };
+  if (!LAGO_CLOUD) { say(f.dataset.fallback + '…', true); mail(); return; }
+  var t0 = btn.textContent; btn.disabled = true; btn.textContent = f.dataset.busy; say('');
+  fetch(LAGO_CLOUD.replace(/\/+$/, '') + '/v1/signup', { method: 'POST', headers: { 'content-type': 'application/json' },
+    body: JSON.stringify({ name: g('nom'), tpl: g('tpl'), email: g('email'), hp: g('hp'), ts: Date.now() }) })
+    .then(function (r) { return r.json().then(function (j) { return { ok: r.ok, j: j }; }); })
+    .then(function (x) {
+      if (!x.ok || !x.j || !/^https:\/\/lago-software\.github\.io\//.test(x.j.link || '')) throw new Error((x.j && x.j.error) || '');
+      var ok = f.querySelector('.ok');
+      Array.prototype.forEach.call(f.children, function (c) { if (c !== ok) c.style.display = 'none'; });
+      ok.hidden = false; ok.setAttribute('tabindex', '-1');
+      var a = ok.querySelector('[data-open]'); a.href = x.j.link;
+      var cp = ok.querySelector('[data-copy]'), label = cp.textContent;
+      cp.addEventListener('click', function () {
+        var done = function () { cp.textContent = f.dataset.copied; setTimeout(function () { cp.textContent = label; }, 2000); };
+        if (navigator.clipboard) navigator.clipboard.writeText(x.j.link).then(done, function () {}); 
+      });
+      ok.focus();
+    })
+    .catch(function (er) {
+      btn.disabled = false; btn.textContent = t0;
+      say(f.dataset.fail + (er && er.message ? ' (' + er.message + ')' : '') + '. ');
+      var a = document.createElement('a'); a.href = '#'; a.textContent = f.dataset.fallback;
+      a.addEventListener('click', function (ev) { ev.preventDefault(); mail(); }); out.appendChild(a);
+    });
 });
 
 /* accueil : accès rapide à la caisse de démonstration */
