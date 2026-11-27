@@ -94,3 +94,18 @@ document.addEventListener('submit', function (e) {
     q.setAttribute('aria-hidden', gone ? 'false' : 'true'); q.tabIndex = gone ? 0 : -1;
   }, { threshold: 0 }).observe(t);
 })();
+
+/* barre « Télécharger gratuitement » collée en bas sur mobile */
+(function () {
+  if (/telecharger\.html$/.test(location.pathname)) return;
+  var L = { fr: ['Télécharger gratuitement', '/telecharger.html'], en: ['Download for free', '/en/telecharger.html'], es: ['Descargar gratis', '/es/telecharger.html'], de: ['Kostenlos herunterladen', '/de/telecharger.html'], it: ['Scarica gratis', '/it/telecharger.html'] };
+  var l = (document.documentElement.lang || 'fr').slice(0, 2), t = L[l] || L.fr;
+  var d = document.createElement('div'); d.className = 'stickydl';
+  d.innerHTML = '<a class="btn btn-grad" href="' + t[1] + '">' + t[0] + ' →</a>';
+  document.body.appendChild(d);
+  var tick = false;
+  addEventListener('scroll', function () {
+    if (tick) return; tick = true;
+    requestAnimationFrame(function () { d.classList.toggle('on', scrollY > 420); tick = false; });
+  }, { passive: true });
+})();

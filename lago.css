@@ -868,3 +868,16 @@ html:not(:lang(fr)) .hero-home h1{font-size:clamp(34px,3.9vw,56px);line-height:1
 .plans2 .plan.hl li svg{stroke:#0A1F4D}
 .repl{max-width:900px;text-wrap:balance}
 .plan .price small{letter-spacing:0;font-size:14px;font-family:'Lago Sans','Lago Sans FB',sans-serif;word-spacing:.05em}
+
+/* gros bouton de téléchargement */
+.btn-xl{font-size:20px;padding:20px 38px;border-radius:18px;box-shadow:0 20px 40px -14px rgba(247,99,0,.75);animation:xlpulse 2.8s ease-in-out infinite}
+.btn-xl span{transition:transform .2s}.btn-xl:hover span{transform:translateX(5px)}
+@keyframes xlpulse{0%,100%{box-shadow:0 20px 40px -14px rgba(247,99,0,.75),0 0 0 0 rgba(247,99,0,.35)}50%{box-shadow:0 20px 40px -14px rgba(247,99,0,.75),0 0 0 12px rgba(247,99,0,0)}}
+@media (prefers-reduced-motion:reduce){.btn-xl{animation:none}}
+.hero-home .ctas .btn-xl{padding:20px 38px;font-size:20px;border-radius:18px}
+.cta-note{margin:12px 0 0;font-size:14px;font-weight:600;color:#4B5B78}
+.stickydl{position:fixed;left:12px;right:12px;bottom:12px;z-index:60;display:none;transform:translateY(140%);transition:transform .3s}
+.stickydl.on{transform:none}
+.stickydl a{width:100%;font-size:18px;padding:17px 20px;border-radius:16px;box-shadow:0 16px 34px -10px rgba(247,99,0,.8)}
+@media (max-width:760px){.stickydl{display:block}.hero-home .ctas .btn-xl{width:100%}}
+@media (min-width:761px){.hero-home .ctas .btn{flex:0 0 auto}}
