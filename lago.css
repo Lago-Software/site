@@ -895,3 +895,4 @@ html:not(:lang(fr)) .hero-home h1{font-size:clamp(34px,3.9vw,56px);line-height:1
 .dl-img{display:block;border-radius:22px;padding:10px;background:linear-gradient(160deg,#16335F,#0A1F4D);box-shadow:0 40px 80px -40px rgba(10,31,77,.55)}
 .dl-img img{display:block;width:100%;height:auto;border-radius:14px}
 @media(max-width:860px){.dl{grid-template-columns:1fr;gap:28px}.dl-cta .btn{width:100%;text-align:center}}
+.article h3{font-size:19px;margin:24px 0 6px;color:var(--navy)}
